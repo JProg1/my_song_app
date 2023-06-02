@@ -1,6 +1,8 @@
 package com.qa;
 
+import com.qa.data.InMemoryDAO;
 import com.qa.data.Song;
+import com.qa.data.SongDAO;
 
 import java.time.LocalDate;
 
@@ -19,9 +21,11 @@ public class App {
                 2, "Con te partiro", "Andrea Boucelli", 250,
                 LocalDate.of(1990, 6, 1)
         );
+        Song[] data = new Song[] { song1, song2, song3 };
+        SongDAO dao = new InMemoryDAO(data);
 
-        System.out.println(song1);
-        System.out.println(song2);
-        System.out.println(song3);
+        for (Song song : dao.readAll()) {
+            System.out.println(song);
+        }
     }
 }
