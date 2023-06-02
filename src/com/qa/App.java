@@ -29,5 +29,16 @@ public class App {
         }
         System.out.println("SONG WITH ID 2: ");
         System.out.println(dao.readById(2));
+
+        System.out.println("Saving new song");
+        Song song4 = new Song(4, "Hells Bells", "ACDC", 300,
+                LocalDate.now());
+        dao.save(song4);
+
+        System.out.println("READ ALL SONGS:");
+        for (Song song : dao.readAll()) {
+            System.out.println(song);
+        }
+
     }
 }
