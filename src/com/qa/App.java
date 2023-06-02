@@ -18,7 +18,7 @@ public class App {
                 LocalDate.of(2022, 2, 4)
         );
         Song song3 = new Song(
-                2, "Con te partiro", "Andrea Boucelli", 250,
+                3, "Con te partiro", "Andrea Boucelli", 250,
                 LocalDate.of(1990, 6, 1)
         );
         Song[] data = new Song[] { song1, song2, song3 };
@@ -27,5 +27,7 @@ public class App {
         for (Song song : dao.readAll()) {
             System.out.println(song);
         }
+        System.out.println("SONG WITH ID 2: ");
+        System.out.println(dao.readById(2));
     }
 }

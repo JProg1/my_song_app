@@ -19,7 +19,10 @@ public class InMemoryDAO extends SongDAO {
 
     @Override
     public Song readById(int id) {
-        return super.readById(id);
+        for (Song song : data) {
+            if (song.getId() == id) return song;
+        }
+        return null; // could be better to throw an exception
     }
 
     @Override
