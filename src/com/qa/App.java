@@ -39,6 +39,5 @@ public class App {
         for (Song song : dao.readAll()) {
             System.out.println(song);
         }
-
     }
 }

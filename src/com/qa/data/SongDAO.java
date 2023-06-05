@@ -4,19 +4,13 @@ import java.lang.reflect.Array;
 import java.util.Collection;
 
 // DAO = Data Access Object
-public class SongDAO {
+public abstract class SongDAO {
     // CRUD functionality
     // - Create, Read, Update, Delete
 
-    public Song[] readAll() {
-        return new Song[0];
-    }
-    public Song readById(int id) {
-        return null;
-    }
+    public abstract Song[] readAll();
+    public abstract Song readById(int id);
 
-    public void save(Song song) {}
-    public boolean deleteById(int id) {
-        return false;
-    }
+    public abstract void save(Song song);
+    public abstract boolean deleteById(int id);
 }
