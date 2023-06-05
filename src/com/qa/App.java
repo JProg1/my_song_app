@@ -1,10 +1,12 @@
 package com.qa;
 
+import com.qa.data.InMemoryArrayListDAO;
 import com.qa.data.InMemoryDAO;
 import com.qa.data.Song;
 import com.qa.data.SongDAO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class App {
 
@@ -22,7 +24,7 @@ public class App {
                 LocalDate.of(1990, 6, 1)
         );
         Song[] data = new Song[] { song1, song2, song3 };
-        SongDAO dao = new InMemoryDAO(data);
+        SongDAO dao = new InMemoryArrayListDAO(data);
 
         for (Song song : dao.readAll()) {
             System.out.println(song);

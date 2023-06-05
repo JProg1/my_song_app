@@ -1,7 +1,10 @@
 package com.qa.data;
 
 import java.util.Arrays;
+import java.util.List;
 
+// An implementing class of an Interface or Abstract class
+// is said to be a concrete class if it is not itself abstract
 public class InMemoryDAO extends SongDAO {
 
     private Song[] data;
@@ -15,8 +18,8 @@ public class InMemoryDAO extends SongDAO {
     }
 
     @Override
-    public Song[] readAll() {
-        return data;
+    public List<Song> readAll() {
+        return Arrays.asList(data);
     }
 
     @Override
