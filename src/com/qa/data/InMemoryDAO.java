@@ -1,5 +1,7 @@
 package com.qa.data;
 
+import com.qa.SongNotFoundException;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +29,8 @@ public class InMemoryDAO extends SongDAO {
         for (Song song : data) {
             if (song.getId() == id) return song;
         }
-        return null; // could be better to throw an exception
+
+        throw new SongNotFoundException(id);
     }
 
 
@@ -36,19 +39,16 @@ public class InMemoryDAO extends SongDAO {
     @Override
     public void save(Song song) {
         if (song.getId() <= 0) return; // don't save with invalid id
-        Song existingSong = readById(song.getId());
-
-        if (existingSong != null) { // update
+        try {
+            Song existingSong = readById(song.getId());
             existingSong.setArtist(song.getArtist());
             existingSong.setRuntime(song.getRuntime());
             existingSong.setTitle(song.getTitle());
             existingSong.setReleaseDate(song.getReleaseDate());
-        } else { // save new
-            // song doesn't exist, save a new one
+        } catch (SongNotFoundException e) {
             data = Arrays.copyOf(data, data.length + 1);
             data[data.length - 1] = song;
         }
-
     }
 
     @Override

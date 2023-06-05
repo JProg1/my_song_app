@@ -7,7 +7,17 @@ import com.qa.data.SongDAO;
 
 import java.time.LocalDate;
 import java.util.List;
+/*
 
+[15:46] Walsh, Morgan
+
+Using the Song app example.
+
+Create a new custom SongNotFoundException, this should inherit from RuntimeException
+In the InMemoryDAO and InMemoryArrayListDAO, throw the custom exception from the readById(int id) method when a song with the specified ID does not exist
+Try out the new exception code by calling dao.readById(1000) in your main method
+
+ */
 public class App {
 
     public static void main(String[] args) {
@@ -31,6 +41,12 @@ public class App {
         }
         System.out.println("SONG WITH ID 2: ");
         System.out.println(dao.readById(2));
+        System.out.println("SONG WITH ID 7: ");
+        try {
+            System.out.println(dao.readById(7));
+        } catch (SongNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
 
         System.out.println("Saving new song");
         Song song4 = new Song(4, "Hells Bells", "ACDC", 300,

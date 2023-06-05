@@ -1,5 +1,7 @@
 package com.qa.data;
 
+import com.qa.SongNotFoundException;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,21 +37,21 @@ public class InMemoryArrayListDAO extends SongDAO {
 //        for (Song song : songs) {
 //            if (song.getId() == id) return song;
 //        }
-        return null; // could be better to throw an exception
+
+        throw new SongNotFoundException(id);
+//        return null; // could be better to throw an exception
     }
 
     @Override
     public void save(Song song) {
         if (song.getId() <= 0) return; // don't save with invalid id
-        Song existingSong = readById(song.getId());
-
-        if (existingSong != null) { // update
-            existingSong.setArtist(song.getArtist());
-            existingSong.setRuntime(song.getRuntime());
-            existingSong.setTitle(song.getTitle());
-            existingSong.setReleaseDate(song.getReleaseDate());
-        } else { // save new
-            // song doesn't exist, save a new one
+        try {
+            Song existingSong = readById(song.getId());
+                existingSong.setArtist(song.getArtist());
+                existingSong.setRuntime(song.getRuntime());
+                existingSong.setTitle(song.getTitle());
+                existingSong.setReleaseDate(song.getReleaseDate());
+        } catch (SongNotFoundException e) {
             songs.add(song);
         }
     }
